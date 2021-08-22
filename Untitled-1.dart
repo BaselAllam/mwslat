@@ -1,38 +1,49 @@
 
-main() {
+List<Map<String, dynamic>> buses = [
+  {
+    'number' : 102,
+    'line' : 'ca to hrg',
+    'stations' : [
+      'cair', 'mansoura', 'qouba'
+      ]
+  },
+  {
+    'number' : 15,
+    'line' : 'ca to ssh',
+    'stations' : [
+      'cair', 'ssh', 'qouba'
+      ]
+  },
+  {
+    'number' : 16,
+    'line' : 'ca to lxr',
+    'stations' : [
+      'cair', 'lxr', 'qouba'
+      ]
+  },
+];
 
-Map<int, List> std = {
-  1 : [
-    '500',
-    600,
-    900.5
-  ],
-  2 : [
-    500,
-    600.66,
-    '900.5'
-  ],
-  3 : [
-    500,
-    600,
-    900.5
-  ],
+
+Map<int, Map<String, dynamic>> buss = {
+  1 : {
+    'number' : 16,
+    'line' : 'ca, lxr',
+    'stations' : [
+      'cair', 'lxr', 'qouba'
+      ]
+  },
+  2 : {
+    'number' : 16,
+    'line' : 'ca, lxr',
+    'stations' : [
+      'cair', 'lxr', 'qouba'
+      ]
+  },
+  3 : {
+    'number' : 16,
+    'line' : 'ca to lxr',
+    'stations' : [
+      'cair', 'lxr', 'qouba'
+      ]
+  },
 };
-
-
-std[1]![0] = int.parse(std[1]![0]);
-std[2]![2] = double.parse(std[2]![2]);
-
-std[1]![2] = std[1]![2].toInt();
-std[2]![1] = std[2]![1].toInt();
-std[2]![2] = std[2]![2].toInt();
-std[3]![2] = std[3]![2].toInt();
-
-
-num sum = std[1]!.reduce((value, element) => value + element);
-num avg = sum / std[1]!.length;
-print(avg);
-
-
-
-}
