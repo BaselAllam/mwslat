@@ -105,3 +105,24 @@ Map<String, dynamic> busesLine = {
     },
   ],
 };
+
+main() {
+
+  // busesLine.forEach((key, value) {
+  //   print('the data is $key');
+  //   value.forEach((i) {
+  //     print('the bus is $i');
+  //     print('---------------------------------');
+  //   });
+  //   print('---------------------------------');
+  // });
+
+  busesLine.forEach((key, value) {
+    value.forEach((i) {
+      print(i['stations'].length);
+    });
+  });
+}
+
+
+// Functional Programming
