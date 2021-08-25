@@ -8,19 +8,35 @@ main() {
   // Header 
   // Body
 
-  int y = 1;
-  int x = 11;
+  List x = [10, 20, 30];
 
-  if(x == 10) {
-    print('its == 10');
-    if(x > y) {
-      print('>');
+  // x[0] += 10;
+  // x[1] += 10;
+  // x[2] += 10;
+
+  for(int i = 0; i < x.length; i++) {
+    if(x[i] < 20) {
+      x[i] += 5;
     }else{
-      print('<');
+      x[i] += 10;
     }
-  }else if(x < 10) {
-    print('x < 10');
-  }else{
-    print('!= 10');
+  } // index loop
+
+  for(int i in x) {
+    if(i < 20) {
+      i += 5;
+    }else{
+      i += 10;
+    }
   }
+
+  x.forEach((i) {
+    if(i < 20) {
+      i += 5;
+    }else{
+      i += 10;
+    }
+  });
+
+  // print(x);
 }
