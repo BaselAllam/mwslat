@@ -22,7 +22,6 @@ class Scheduale{
   }
 }
 
-
 class Direction{
 
   String startPoint;
