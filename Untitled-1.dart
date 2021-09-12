@@ -48,4 +48,3 @@ main() {
 }
 
 
-// App Design URL => https://dribbble.com/shots/14420230-Public-Transport-App-Design/attachments/6098108?mode=media
