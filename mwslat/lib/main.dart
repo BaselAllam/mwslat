@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mwslat/screens/homepage.dart';
+import 'package:mwslat/screens/searchResult.dart';
 
 
 
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: SearchResult(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
