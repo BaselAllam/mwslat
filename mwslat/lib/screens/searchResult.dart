@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mwslat/theme/sharedcolor.dart';
 import 'package:mwslat/theme/sharedfontstyle.dart';
+import 'package:mwslat/widgets/offerWidget.dart';
 
 
 
@@ -12,18 +13,22 @@ class SearchResult extends StatefulWidget {
 
 class _SearchResultState extends State<SearchResult> {
 
-List<Map<String, dynamic>> drawerData = [
+List<Map<String, dynamic>> categories = [
   {
-    'icon' : Icons.settings,
-    'txt' : 'Settings'
+    'icon' : Icons.grain,
+    'txt' : 'All'
   },
   {
-    'icon' : Icons.account_circle,
-    'txt' : 'Profile'
+    'icon' : Icons.train,
+    'txt' : 'Traing'
   },
   {
-    'icon' : Icons.phone,
-    'txt' : 'Contact Us'
+    'icon' : Icons.local_taxi_rounded,
+    'txt' : 'Taxi'
+  },
+  {
+    'icon' : Icons.bus_alert,
+    'txt' : 'Bus'
   },
 ];
 
@@ -45,18 +50,66 @@ List<Map<String, dynamic>> drawerData = [
           )
         ],
       ),
-      drawer: Drawer(
-        child: Column(
+      body: Container(
+        margin: EdgeInsets.all(10.0),
+        child: ListView(
+          scrollDirection: Axis.vertical,
           children: [
-            SizedBox(height: 75),
-            for(int i = 0; i < drawerData.length; i++)
-            ListTile(
-              leading: Icon(drawerData[i]['icon'], color: blackColor, size: 20.0),
-              title: Text(drawerData[i]['txt'], style: primaryTextStyle),
-              trailing: Icon(Icons.arrow_forward_ios, color: blackColor, size: 20.0),
+            Container(
+              height: 115.0,
+              margin: EdgeInsets.only(bottom: 10.0, top: 10.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  for(Map<String, dynamic> cat in categories)
+                  Column(
+                    children: [
+                      Container(
+                        height: 70,
+                        width: 70,
+                        margin: EdgeInsets.all(11.0),
+                        decoration: BoxDecoration(
+                          color: secondaryColor,
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: Icon(cat['icon'], color: blackColor, size: 40.0),
+                      ),
+                      Text(
+                        '${cat['txt']}',
+                        style: primaryTextStyle,
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
+            Row(
+              children: [
+                item('With Offer', Icons.local_offer, secondaryColor, Border.all(color: secondaryColor)),
+                item('Last Time', Icons.watch, Colors.transparent, Border.all(color: blackColor, width: 0.5)),
+              ],
+            ),
+            OfferWidget()
           ],
         ),
+      ),
+    );
+  }
+  Container item(String txt, IconData icon, Color containerColor, Border containerBorder) {
+    return Container(
+      decoration: BoxDecoration(
+        color: containerColor,
+        borderRadius: BorderRadius.circular(20.0),
+        border: containerBorder
+      ),
+      margin: EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(15.0),
+      width: MediaQuery.of(context).size.width/2.5,
+      child: Row(
+        children: [
+          Icon(icon, color: primaryColor, size: 20.0),
+          Text('  $txt', style: secondaryTextStyle,)
+        ],
       ),
     );
   }

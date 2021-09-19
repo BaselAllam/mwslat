@@ -7,4 +7,4 @@ Color secondaryColor = Color(0xffdde3f2);
 
 Color blackColor = Color(0xff08090d);
 
-Color backGroundColor = Color(0xffffffff);
+Color backGroundColor = Colors.grey[100]!;
