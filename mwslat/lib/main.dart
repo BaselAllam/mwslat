@@ -21,3 +21,6 @@ class MyApp extends StatelessWidget {
 
 
 // App Design URL => https://dribbble.com/shots/14420230-Public-Transport-App-Design/attachments/6098108?mode=media
+
+
+// Next Session Ass => https://i.ytimg.com/vi/diUDjNwZ8Lg/maxresdefault.jpg
