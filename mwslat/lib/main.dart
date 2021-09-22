@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mwslat/screens/searchResult.dart';
+import 'package:mwslat/screens/homepage.dart';
 
 
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SearchResult(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -21,6 +21,3 @@ class MyApp extends StatelessWidget {
 
 
 // App Design URL => https://dribbble.com/shots/14420230-Public-Transport-App-Design/attachments/6098108?mode=media
-
-
-// Next Session Ass => https://i.ytimg.com/vi/diUDjNwZ8Lg/maxresdefault.jpg

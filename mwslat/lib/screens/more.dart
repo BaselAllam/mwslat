@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mwslat/theme/sharedcolor.dart';
 import 'package:mwslat/theme/sharedfontstyle.dart';
+import 'package:mwslat/widgets/backButton.dart';
 
 
 
@@ -55,6 +56,7 @@ List<Map<String, dynamic>> moreData = [
           'More',
           style: primaryTextStyle,
         ),
+        leading: CustomBackButton(),
         iconTheme: IconThemeData(color: blackColor, size: 25.0),
       ),
       body: ListView.builder(
@@ -65,6 +67,7 @@ List<Map<String, dynamic>> moreData = [
             leading: Icon(moreData[i]['icon'], color: primaryColor, size: 25.0),
             title: Text(moreData[i]['txt'], style: primaryTextStyle),
             trailing: Icon(Icons.arrow_forward_ios, color: blackColor, size: 20.0),
+            onTap: () {},
           );
         },
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mwslat/screens/more.dart';
 import 'package:mwslat/theme/sharedcolor.dart';
 import 'package:mwslat/theme/sharedfontstyle.dart';
+import 'package:mwslat/widgets/backButton.dart';
 import 'package:mwslat/widgets/offerWidget.dart';
 
 
@@ -43,10 +45,14 @@ List<Map<String, dynamic>> categories = [
           'Results',
           style: primaryTextStyle,
         ),
+        leading: CustomBackButton(),
         iconTheme: IconThemeData(color: blackColor, size: 25.0),
         actions: [
-          Icon(
-            Icons.account_circle,
+          IconButton(
+            icon: Icon(Icons.account_circle),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) {return More();}));
+            },
           )
         ],
       ),
@@ -89,7 +95,8 @@ List<Map<String, dynamic>> categories = [
                 item('Last Time', Icons.watch, Colors.transparent, Border.all(color: blackColor, width: 0.5)),
               ],
             ),
-            OfferWidget()
+            for(int i = 0; i < 5; i++)
+            OfferWidget(i)
           ],
         ),
       ),
