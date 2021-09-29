@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mwslat/screens/searchResult.dart';
 import 'package:mwslat/theme/sharedcolor.dart';
 import 'package:mwslat/theme/sharedfontstyle.dart';
+import 'package:mwslat/widgets/cutomsbutton.dart';
 
 
 
@@ -120,20 +121,12 @@ class _HomePageState extends State<HomePage> {
                           Text('1 Passenger', style: secondaryTextStyle),
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: TextButton(
-                          child: Text('Search', style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold)),
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                            backgroundColor: blackColor,
-                            fixedSize: Size(MediaQuery.of(context).size.width/1.1, 40.0)
-                          ),
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_) {return SearchResult();}));
-                          },
-                        ),
-                      ),
+                      CustomButton(
+                        'Search',
+                        () {
+                          Navigator.push(context, MaterialPageRoute(builder: (_) {return SearchResult();}));
+                        }
+                      )
                     ],
                   )
                 ),

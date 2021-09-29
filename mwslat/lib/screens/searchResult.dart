@@ -91,8 +91,8 @@ List<Map<String, dynamic>> categories = [
             ),
             Row(
               children: [
-                item('With Offer', Icons.local_offer, secondaryColor, Border.all(color: secondaryColor)),
-                item('Last Time', Icons.watch, Colors.transparent, Border.all(color: blackColor, width: 0.5)),
+                Item('With Offer', Icons.local_offer, Option.withOffer),
+                Item('Last Time', Icons.watch, Option.lastTime),
               ],
             ),
             for(int i = 0; i < 5; i++)
@@ -102,22 +102,53 @@ List<Map<String, dynamic>> categories = [
       ),
     );
   }
-  Container item(String txt, IconData icon, Color containerColor, Border containerBorder) {
-    return Container(
-      decoration: BoxDecoration(
-        color: containerColor,
-        borderRadius: BorderRadius.circular(20.0),
-        border: containerBorder
-      ),
-      margin: EdgeInsets.all(10.0),
-      padding: EdgeInsets.all(15.0),
-      width: MediaQuery.of(context).size.width/2.5,
-      child: Row(
-        children: [
-          Icon(icon, color: primaryColor, size: 20.0),
-          Text('  $txt', style: secondaryTextStyle,)
-        ],
+}
+
+
+
+class Item extends StatefulWidget {
+
+  final String txt;
+  final IconData icon;
+  Option option;
+
+  Item(this.txt, this.icon, this.option);
+
+  @override
+  _ItemState createState() => _ItemState();
+}
+
+class _ItemState extends State<Item> {
+
+  
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: widget.option == Option.lastTime ? secondaryColor : Colors.transparent,
+          borderRadius: BorderRadius.circular(20.0),
+          border: widget.option == Option.lastTime ? Border.all(color: secondaryColor) : Border.all(color: blackColor, width: 0.5)
+        ),
+        margin: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(15.0),
+        width: MediaQuery.of(context).size.width/2.5,
+        child: Row(
+          children: [
+            Icon(widget.icon, color: primaryColor, size: 20.0),
+            Text('  ${widget.txt}', style: secondaryTextStyle,)
+          ],
+        ),
       ),
     );
   }
+}
+
+enum Option{
+  withOffer, lastTime
 }
