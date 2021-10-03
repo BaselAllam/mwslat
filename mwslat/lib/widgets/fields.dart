@@ -38,3 +38,31 @@ OutlineInputBorder outlineInputBorder(Color color) {
       borderSide: BorderSide(color: color, width: 1.5)
     );
 }
+
+
+
+customField(String title, String hint, TextInputType textInputType, TextEditingController controller, Key key, Function onSubmit, {bool secure = false, Widget suffix = const SizedBox()}) {
+  return TextFormField(
+    key: key,
+    validator: (value) {
+      if(value!.isEmpty) {
+        return 'This Field Required';
+      }
+    },
+    decoration: InputDecoration(
+      border: outlineInputBorder(secondaryColor),
+      focusedBorder: outlineInputBorder(secondaryColor),
+      errorBorder: outlineInputBorder(Colors.red),
+      hintText: '$hint',
+      hintStyle: secondaryTextStyle,
+      suffixIcon: suffix
+    ),
+    keyboardType: textInputType,
+    textInputAction: TextInputAction.done,
+    controller: controller,
+    obscureText: secure,
+    onFieldSubmitted: (value) {
+      onSubmit();
+    },
+  );
+}

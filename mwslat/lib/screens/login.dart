@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mwslat/models/shared.dart';
 import 'package:mwslat/screens/homepage.dart';
 import 'package:mwslat/screens/signup.dart';
 import 'package:mwslat/theme/sharedcolor.dart';
@@ -93,6 +94,7 @@ bool isSecure = true;
                   if(!formKey.currentState!.validate()) {
                     ScaffoldMessenger.of(context).showSnackBar(snack('Some Fields Required', Colors.red));
                   }else{
+                    Shared.saveOffline('email', emailController.text);
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {return HomePage();}));
                   }
                 }

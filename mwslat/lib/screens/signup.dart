@@ -1,4 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:mwslat/models/shared.dart';
 import 'package:mwslat/screens/homepage.dart';
 import 'package:mwslat/theme/sharedcolor.dart';
 import 'package:mwslat/theme/sharedfontstyle.dart';
@@ -33,6 +36,8 @@ bool isSecure = true;
 
 DateTime date = DateTime(1990);
 
+File? pickedImage;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,12 +54,27 @@ DateTime date = DateTime(1990);
                 width: MediaQuery.of(context).size.width/2.5,
                 margin: EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
-                  image: DecorationImage(
+                  image: pickedImage == null ? DecorationImage(
                     image: NetworkImage('https://png.pngtree.com/png-vector/20190607/ourmid/pngtree-standing-people-illustration-cartoon-business-set-design-worker-png-image_1488881.jpg'),
+                    fit: BoxFit.fill,
+                  ) : DecorationImage(
+                    image: FileImage(pickedImage!),
                     fit: BoxFit.fill,
                   ),
                   shape: BoxShape.circle
                 ),
+                alignment: Alignment.center,
+                child: IconButton(
+                  icon: Icon(Icons.add_a_photo),
+                  color: Colors.black,
+                  iconSize: 30.0,
+                  onPressed: () async {
+                    XFile? img = await ImagePicker().pickImage(source: ImageSource.camera);
+                    setState(() {
+                      pickedImage = File(img!.path);
+                    });
+                  },
+                )
               ),
               Align(
                 alignment: Alignment.center,
@@ -123,6 +143,7 @@ DateTime date = DateTime(1990);
                   if(!formKey.currentState!.validate()) {
                     ScaffoldMessenger.of(context).showSnackBar(snack('Some Fields Required', Colors.red));
                   }else{
+                    Shared.saveOffline('email', emailController.text);
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {return HomePage();}));
                   }
                 }

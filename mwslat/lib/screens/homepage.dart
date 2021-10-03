@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mwslat/screens/searchResult.dart';
 import 'package:mwslat/theme/sharedcolor.dart';
 import 'package:mwslat/theme/sharedfontstyle.dart';
 import 'package:mwslat/widgets/cutomsbutton.dart';
+import 'package:mwslat/widgets/fields.dart';
 
 
 
@@ -13,6 +17,28 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  TextEditingController fromController = TextEditingController();
+  TextEditingController toController = TextEditingController();
+
+  GlobalKey<FormState> fromKey = GlobalKey<FormState>();
+  GlobalKey<FormState> toKey = GlobalKey<FormState>();
+
+Position position = Position(latitude: 30.0444, longitude: 31.2357, accuracy: 0.0, isMocked: true, floor: 1, timestamp: DateTime(1990), speedAccuracy: 0.0, altitude: 0.0, speed: 0.0, heading: 0.0);
+
+@override
+void initState() {
+  currentPosition();
+  super.initState();
+}
+
+Set<Marker> markers = {
+  Marker(
+    markerId: MarkerId('currentPosition'),
+    position: LatLng(30.0444, 31.2357),
+  ),
+};
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +49,17 @@ class _HomePageState extends State<HomePage> {
           child: Stack(
             children: [
               Container(
-                height: MediaQuery.of(context).size.height/1.8,
-                color: Colors.indigo[50],
+                height: MediaQuery.of(context).size.height/1.9,
+                child: GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    zoom: 12,
+                    target: LatLng(30.0444, 31.2357)
+                  ),
+                  myLocationButtonEnabled: true,
+                  myLocationEnabled: true,
+                  mapType: MapType.hybrid,
+                  markers: markers,
+                )
               ),
               Positioned(
                 left: MediaQuery.of(context).size.width-60,
@@ -81,6 +116,12 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   height: 50.0,
                                   margin: EdgeInsets.all(10.0),
+                                  child: customField('Picked Location', 'From', TextInputType.text, fromController, fromKey, () {
+                                    searchLocation(fromController.text);
+                                    setState(() {
+                                      
+                                    });
+                                  }),
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
@@ -89,6 +130,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   height: 50.0,
                                   margin: EdgeInsets.all(10.0),
+                                  child: customField('Drop of Location', 'To', TextInputType.text, toController, toKey, () {}),
                                 ),
                               ],
                             ),
@@ -136,5 +178,23 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+  currentPosition() async {
+    Position current = await Geolocator.getCurrentPosition();
+    setState(() {
+      position = current;
+    });
+  }
+  searchLocation(String address) async {
+
+    List<Location> locations = await locationFromAddress(address);
+    Marker newMarker = Marker(
+        markerId: MarkerId(locations[0].latitude.toString()),
+        position: LatLng(locations[0].latitude, locations[0].longitude,),
+    );
+    setState(() {
+      markers.add(newMarker);
+      position = Position(latitude: locations[0].latitude, longitude: locations[0].longitude, accuracy: 0.0, isMocked: true, floor: 1, timestamp: DateTime(1990), speedAccuracy: 0.0, altitude: 0.0, speed: 0.0, heading: 0.0);
+    });
   }
 }
