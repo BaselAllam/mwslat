@@ -45,7 +45,6 @@ void initState() {
 // App Design URL => https://dribbble.com/shots/14420230-Public-Transport-App-Design/attachments/6098108?mode=media
 
 
-// Assignment => 
-      // 1- make camera choices
-      // 2- recode google map
-      // 3- read section 25 page 16 in learn google flutter fast
+// ARCH => 
+      // Models => 1- CateogryModel, 2- VechileModel
+      // Methods => 1- Get Categories, 2- Loop on Categories, 3- Create list of categories object and vechile object
