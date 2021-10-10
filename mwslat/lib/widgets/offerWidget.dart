@@ -103,7 +103,7 @@ class _OfferWidgetState extends State<OfferWidget> {
                     children: [
                       Row(
                         children: [
-                          for(int i = 0; i < 9; i++)
+                          for(int i = 0; i < MediaQuery.of(context).size.width/30.toInt(); i++)
                           Container(
                             height: 3.0,
                             width: 20.0,

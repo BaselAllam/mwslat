@@ -162,7 +162,7 @@ class _ItemState extends State<Item> {
           border: widget.option == Option.lastTime ? Border.all(color: secondaryColor) : Border.all(color: blackColor, width: 0.5)
         ),
         margin: EdgeInsets.all(10.0),
-        padding: EdgeInsets.all(15.0),
+        padding: EdgeInsets.all(7.0),
         width: MediaQuery.of(context).size.width/2.5,
         child: Row(
           children: [

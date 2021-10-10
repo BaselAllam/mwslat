@@ -53,7 +53,7 @@ class _TicketState extends State<Ticket> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0)
               ),
-              child: Column(
+              child: ListView(
                 children: [
                   Container(
                     margin: EdgeInsets.only(bottom: 10.0),
@@ -147,7 +147,7 @@ class _TicketState extends State<Ticket> {
                           child: Icon(Icons.edit, color: blackColor, size: 30.0)
                         ),
                     ),
-                    model.isAddTicketLoading == true ? CircularProgressIndicator() : 
+                    model.isAddTicketLoading == true ? Center(child: CircularProgressIndicator()) : 
                     CustomButton(
                       'Save',
                       () async {
