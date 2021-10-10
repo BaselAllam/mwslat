@@ -47,9 +47,11 @@ void initState() {
 }
 
 
-// App Design URL => https://dribbble.com/shots/14420230-Public-Transport-App-Design/attachments/6098108?mode=media
+// Ref => 
 
-
-// ARCH => 
-      // Models => 1- CateogryModel, 2- VechileModel
-      // Methods => 1- Get Categories, 2- Loop on Categories, 3- Create list of categories object and vechile object
+    // Language => https://resocoder.com/2019/06/01/flutter-localization-the-easy-way-internationalization-with-json/
+    // SQlite => https://flutter.dev/docs/cookbook/persistence/sqlite
+    // Audio Player => https://pub.dev/packages/audioplayers
+    // Video Player => https://pub.dev/packages/video_player
+    // Firebase => https://www.youtube.com/user/firebase
+    // Tutorial => https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/
